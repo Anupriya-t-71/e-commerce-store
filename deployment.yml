@@ -22,10 +22,10 @@ spec:
         ports:
         - containerPort: 3001
         env:
-          configMapRef:
-            - name: user-config
-          secretRef:
-            - name: user-secret  
+          - configMapRef:
+              name: user-config
+          - secretRef:
+              name: user-secret  
 ---            
 apiVersion: apps/v1
 kind: Deployment
@@ -51,8 +51,8 @@ spec:
         ports:
         - containerPort: 3004
         env:
-          configMapRef:
-            - name: order-config
+          - configMapRef:
+              name: order-config
            
 ---            
 apiVersion: apps/v1
@@ -79,8 +79,8 @@ spec:
         ports:
         - containerPort: 3002
         env:
-          configMapRef:
-            - name: product-config
+         - configMapRef:
+              name: product-config
          
 ---            
 apiVersion: apps/v1
@@ -107,8 +107,8 @@ spec:
         ports:
         - containerPort: 3003
         env:
-          configMapRef:
-            - name: cart-config
+          - configMapRef:
+              name: cart-config
          
 --- 
 apiVersion: apps/v1
