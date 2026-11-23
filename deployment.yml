@@ -1,0 +1,138 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  labels:
+    app: user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+      - name: user-service
+        image: 13.232.36.18:443/backend/user-service:1.0
+        ports:
+        - containerPort: 3001
+        env:
+          configMapRef:
+            - name: user-config
+          secretRef:
+            - name: user-secret  
+---            
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  labels:
+    app: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+      - name: order-service
+        image: 13.232.36.18:443/backend/order-service:1.0
+        ports:
+        - containerPort: 3004
+        env:
+          configMapRef:
+            - name: order-config
+           
+---            
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+  labels:
+    app: product-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+      - name: product-service
+        image: 13.232.36.18:443/backend/product-service:1.0
+        ports:
+        - containerPort: 3002
+        env:
+          configMapRef:
+            - name: product-config
+         
+---            
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-service
+  labels:
+    app: cart-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart-service
+  template:
+    metadata:
+      labels:
+        app: cart-service
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+      - name: cart-service
+        image: 13.232.36.18:443/backend/cart-service:1.0
+        ports:
+        - containerPort: 3003
+        env:
+          configMapRef:
+            - name: cart-config
+         
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+      - name: mongodb
+        image: mongo:4.4
+        ports:
+        - containerPort: 27017
+       
+
