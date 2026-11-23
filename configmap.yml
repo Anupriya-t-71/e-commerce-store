@@ -23,7 +23,7 @@ metadata:
   name: product-config
 data:
   PORT: "3002"
-  MONGO_URI: mongodb://mongo:27017/productdb
+  MONGO_URI: "mongodb://mongo:27017/productdb"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -31,5 +31,5 @@ metadata:
   name: cart-config
 data:
   PORT: "3003"
-  MONGO_URI: mongodb://mongo:27017/cartdb
+  MONGO_URI: "mongodb://mongo:27017/cartdb"
   PRODUCT_SERVICE_URL: "http://product-service:3002"
