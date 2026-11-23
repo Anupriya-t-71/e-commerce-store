@@ -21,7 +21,7 @@ spec:
         image: 13.232.36.18:443/backend/user-service:1.0
         ports:
         - containerPort: 3001
-        env:
+        envFrom:
           - configMapRef:
               name: user-config
           - secretRef:
@@ -50,7 +50,7 @@ spec:
         image: 13.232.36.18:443/backend/order-service:1.0
         ports:
         - containerPort: 3004
-        env:
+        envFrom:
           - configMapRef:
               name: order-config
            
@@ -78,7 +78,7 @@ spec:
         image: 13.232.36.18:443/backend/product-service:1.0
         ports:
         - containerPort: 3002
-        env:
+        envFrom:
          - configMapRef:
               name: product-config
          
@@ -106,7 +106,7 @@ spec:
         image: 13.232.36.18:443/backend/cart-service:1.0
         ports:
         - containerPort: 3003
-        env:
+        envFrom:
           - configMapRef:
               name: cart-config
          
